@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Portfólio de Desenvolvedor Front-end e Analista de Suporte especialista em interfaces modernas, performance, troubleshooting e suporte técnico. Soluções completas para web e TI.">
+    <meta name="keywords" content="Front-end, Suporte Técnico, UI/UX, HTML, CSS, JavaScript, Troubleshooting, Portfólio">
+    <meta name="author" content="Everton Miranda">
+    <title>Everton Miranda | Front-end & Suporte TI</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #05090f;
+            color: #eef2ff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Scroll personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0f1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3e5f;
+            border-radius: 8px;
+        }
+
+        /* Header e Navegação */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(5, 9, 15, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: #eef2ff;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+
+        /* Menu Desktop */
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #cbd5e6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #60a5fa;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Botão Hambúrguer */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            z-index: 1001;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #eef2ff;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        /* Layout base */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 100px 0 80px;
+            border-bottom: 1px solid rgba(56, 89, 128, 0.2);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* Tipografia */
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 4px;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #3b82f6;
+            color: #eef2ff;
+        }
+        .btn-outline:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #60a5fa;
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 80% 20%, #0a1120, #020408);
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+            padding-top: 80px;
+        }
+        .hero-content {
+            max-width: 700px;
+        }
+        .hero-badge {
+            background: rgba(59,130,246,0.2);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #93c5fd;
+            margin-bottom: 24px;
+            border: 1px solid rgba(59,130,246,0.3);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, #a5f3fc, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #b9c7da;
+            margin-bottom: 32px;
+            max-width: 560px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* Cards e grids */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+        }
+        .skill-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(2px);
+            border-radius: 28px;
+            padding: 28px;
+            border: 1px solid rgba(71, 105, 148, 0.25);
+            transition: transform 0.2s ease, border-color 0.2s;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+        }
+        .skill-icon {
+            font-size: 2.4rem;
+            color: #3b82f6;
+            margin-bottom: 18px;
+        }
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .skill-tag {
+            background: rgba(59,130,246,0.15);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #bfdbfe;
+        }
+
+        /* Projetos grid - melhoria nas imagens */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 32px;
+        }
+        .project-card {
+            background: #0e1622;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid #1f2a3e;
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: #2d4a7c;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+        }
+        .project-preview {
+            width: 100%;
+            height: 220px;
+            background: #0b1018;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #1f2a3e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Estilo para imagem redimensionada perfeitamente */
+        .project-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover .project-preview img {
+            transform: scale(1.03);
+        }
+        .project-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+            transform: scale(1.01);
+        }
+        .preview-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #0f172a, #080e18);
+            color: #3b82f6;
+            font-size: 2rem;
+            gap: 12px;
+        }
+        .preview-placeholder span {
+            font-size: 0.9rem;
+            color: #8ba2d6;
+        }
+        .project-info {
+            padding: 22px;
+        }
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .project-info p {
+            color: #9ca9c2;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .project-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn-small {
+            padding: 8px 18px;
+            font-size: 0.8rem;
+            border-radius: 60px;
+            background: #1e293b;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-small i {
+            font-size: 0.9rem;
+        }
+        .btn-small:hover {
+            background: #2d3a53;
+            transform: translateY(-2px);
+        }
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid #3b82f6;
+        }
+        .btn-ghost:hover {
+            background: #3b82f620;
+        }
+
+        /* Serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        .service-item {
+            background: rgba(18, 25, 45, 0.5);
+            border-radius: 24px;
+            padding: 32px 20px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+            background: rgba(30, 41, 59, 0.6);
+        }
+        .service-item i {
+            font-size: 2.5rem;
+            color: #60a5fa;
+            margin-bottom: 16px;
+        }
+        .service-item h4 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        /* Contato */
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            margin-top: 30px;
+        }
+        .contact-info {
+            flex: 1;
+            min-width: 220px;
+        }
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+        .contact-card {
+            background: #0e1622;
+            border-radius: 48px;
+            padding: 12px 28px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #eef2ff;
+            border: 1px solid #2a3a54;
+            transition: 0.2s;
+        }
+        .contact-card i {
+            font-size: 1.5rem;
+        }
+        .contact-card:hover {
+            background: #1a253b;
+            transform: scale(1.02);
+            border-color: #3b82f6;
+        }
+        .form {
+            flex: 1.5;
+            background: #0b111c;
+            padding: 32px;
+            border-radius: 32px;
+            border: 1px solid #1f2a3e;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: #101826;
+            border: 1px solid #253244;
+            border-radius: 24px;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+        }
+        .btn-submit {
+            width: 100%;
+            background: #2563eb;
+            justify-content: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px 0;
+            color: #5f7396;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(56,89,128,0.3);
+        }
+
+        /* Animações */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate {
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            section {
+                padding: 80px 0 60px;
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .contact-wrapper {
+                flex-direction: column;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Menu Hamburguer Ativo */
+            .hamburger {
+                display: block;
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(5, 9, 15, 0.98);
+                backdrop-filter: blur(16px);
+                width: 100%;
+                text-align: center;
+                transition: 0.4s ease;
+                gap: 0;
+                padding: 2rem 0;
+                border-radius: 0 0 24px 24px;
+                border-bottom: 1px solid #1f2a3e;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-link {
+                padding: 1rem 0;
+                width: 100%;
+                font-size: 1.1rem;
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn {
+                justify-content: center;
+            }
+            .project-preview {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header com Menu Hamburguer -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#" class="logo">Everton<span>Miranda</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-menu" id="navMenu">
+            <a href="#home" class="nav-link">Início</a>
+            <a href="#sobre" class="nav-link">Sobre</a>
+            <a href="#habilidades" class="nav-link">Habilidades</a>
+            <a href="#projetos" class="nav-link">Portfólio</a>
+            <a href="#servicos" class="nav-link">Serviços</a>
+            <a href="#contato" class="nav-link">Contato</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content animate">
+                <div class="hero-badge">
+                    <i class="fas fa-code"></i> + <i class="fas fa-headset"></i> Tecnologia & Eficiência
+                </div>
+                <h1>Desenvolvedor <span>Front-end</span><br>& Analista de Suporte</h1>
+                <p>Soluções de alta performance, interfaces inteligentes e suporte técnico estratégico. Transformo desafios em experiências confiáveis e bem estruturadas.</p>
+                <div class="btn-group">
+                    <a href="#projetos" class="btn btn-primary"><i class="fas fa-folder-open"></i> Ver Portfólio</a>
+                    <a href="#contato" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Entrar em Contato</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mim -->
+    <section id="sobre">
+        <div class="container">
+            <h2>Sobre mim</h2>
+            <div style="max-width: 880px;">
+                <p style="font-size: 1.1rem; margin-bottom: 20px; color: #cfddee;">Mais de 6 anos de experiência unindo o desenvolvimento front-end com análise de suporte técnico. Especialista em criar interfaces responsivas e otimizadas, ao mesmo tempo em que atuo na resolução de incidentes, atendimento a usuários e manutenção de sistemas. </p>
+                <p style="margin-bottom: 16px;">✔ Habilidade em diagnosticar problemas de performance e acessibilidade, garantindo entregas sólidas.<br>
+                ✔ Conhecimento em fluxos de troubleshooting, redes básicas e documentação técnica.<br>
+                ✔ Foco em UX e comunicação clara para alinhar expectativas entre times de TI e stakeholders.</p>
+                <p style="border-left: 3px solid #3b82f6; padding-left: 20px; font-style: italic; color: #b9cbff;">"Entregar código limpo e suporte humano: a combinação para sistemas que geram confiança."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habilidades -->
+    <section id="habilidades">
+        <div class="container">
+            <h2>Competências técnicas</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fab fa-html5"></i> <i class="fab fa-css3-alt"></i> <i class="fab fa-js"></i></div>
+                    <h3>Front-end moderno</h3>
+                    <p>HTML5 semântico, CSS3 avançado, JavaScript ES6+, Bootstrap, responsividade extrema, performance e acessibilidade (WCAG).</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flex/Grid</span>
+                        <span class="skill-tag">Core Web Vitals</span>
+                        <span class="skill-tag">Mobile First</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-laptop-code"></i> <i class="fas fa-database"></i></div>
+                    <h3>Suporte & Infraestrutura</h3>
+                    <p>Atendimento nível 1/2, troubleshooting de sistemas, redes básicas (TCP/IP, DNS), gerenciamento de chamados e documentação de processos.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Zendesk/Jira</span>
+                        <span class="skill-tag">Linux/Windows</span>
+                        <span class="skill-tag">ITIL básico</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-chart-line"></i> <i class="fas fa-mobile-alt"></i></div>
+                    <h3>Otimização & UX</h3>
+                    <p>Otimização de sites para melhor performance, auditoria de lighthouse, design centrado no usuário e acessibilidade digital.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Google PageSpeed</span>
+                        <span class="skill-tag">Lazy Loading</span>
+                        <span class="skill-tag">Figma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfólio / Projetos com imagens redimensionadas -->
+    <section id="projetos">
+        <div class="container">
+            <h2>Projetos em destaque</h2>
+            <div class="projects-grid" id="projectsContainer"></div>
+        </div>
+    </section>
+
+    <!-- Experiência / Serviços -->
+    <section id="servicos">
+        <div class="container">
+            <h2>Serviços & Atuação</h2>
+            <div class="services-grid">
+                <div class="service-item"><i class="fas fa-paint-brush"></i><h4>Desenvolvimento de interfaces</h4><p>Criação de UI/UX modernas, responsivas e performáticas.</p></div>
+                <div class="service-item"><i class="fas fa-tools"></i><h4>Manutenção & Suporte</h4><p>Correção de bugs, melhorias contínuas e atendimento ágil.</p></div>
+                <div class="service-item"><i class="fas fa-rocket"></i><h4>Otimização de sites</h4><p>Speed insights, SEO técnico e melhor ranking.</p></div>
+                <div class="service-item"><i class="fas fa-users"></i><h4>Suporte a sistemas</h4><p>Resolução de incidentes, documentação e treinamento.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+        <div class="container">
+            <h2>Vamos construir algo sólido</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-links">
+                        <a href="https://wa.me/5511999999999?text=Olá!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20conversar." target="_blank" class="contact-card"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://linkedin.com/in/seu-perfil" target="_blank" class="contact-card"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    </div>
+                    <p style="margin-top: 10px;"><i class="fas fa-envelope"></i> contato@alexfront.dev  |  <i class="fas fa-phone-alt"></i> +55 (11) 9 9999-9999</p>
+                    <p style="margin-top: 24px; font-size: 0.9rem;">Disponível para oportunidades como PJ/CLT, projetos freelancer e parcerias técnicas. Resposta rápida via WhatsApp ou formulário.</p>
+                </div>
+                <div class="form">
+                    <form id="contactForm">
+                        <div class="form-group"><input type="text" placeholder="Seu nome completo" id="nome" required></div>
+                        <div class="form-group"><input type="email" placeholder="E-mail profissional" id="email" required></div>
+                        <div class="form-group"><textarea rows="4" placeholder="Descreva sua necessidade ou oportunidade..." id="mensagem" required></textarea></div>
+                        <button type="submit" class="btn btn-primary btn-submit"><i class="fas fa-paper-plane"></i> Enviar mensagem</button>
+                        <p id="formFeedback" style="margin-top: 16px; font-size: 0.8rem; color: #9acdff;"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>© 2025 Everton Miranda – Desenvolvedor Front-end & Analista de Suporte. Criado com performance e foco em resultados.</p>
+        </div>
+    </footer>
+</main>
+
+<script>
+    // Projetos com imagens demonstrativas e múltiplos links do GitHub
+    // As imagens são redimensionadas automaticamente via CSS object-fit: cover
+    const projectsData = [
+        {
+            name: "TechFlow Dashboard",
+            description: "Plataforma de métricas em tempo real com design responsivo, gráficos dinâmicos e suporte a dark mode. Performance e UX elevados.",
+            previewType: "image",
+            previewSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop",
+            github: "https://github.com/seuusuario/techflow-dashboard",
+            live: "https://techflow-demo.netlify.app"
+        },
+        {
+            name: "Support Desk Hub",
+            description: "Sistema de chamados focado em UX para equipes de suporte, com filtros, notificações e base de conhecimento interna. Resolução ágil de incidentes.",
+            previewType: "image",
+            previewSrc: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=450&fit=crop",
+            github: "https://github.com/seuusuario/support-desk-hub",
+            live: "https://supportdesk.vercel.app"
+        },
+        {
+            name: "Portfolio 3D Interactive",
+            description: "Experimentação com Three.js e microinterações, mostrando fluidez, animações 3D e criatividade técnica. Performance otimizada.",
+            previewType: "image",
+            previewSrc: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=450&fit=crop",
+            github: "https://github.com/seuusuario/portfolio-three",
+            live: "https://three-portfolio.dev"
+        },
+        {
+            name: "E-commerce SmartStore",
+            description: "Loja virtual completa com carrinho, filtros avançados e integração com API. Design responsivo e foco em conversão.",
+            previewType: "image",
+            previewSrc: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=450&fit=crop",
+            github: "https://github.com/seuusuario/smartstore-ecommerce",
+            live: "https://smartstore.demo"
+        },
+        {
+            name: "TaskFlow Manager",
+            description: "Aplicativo de gerenciamento de tarefas com drag-and-drop, notificações e modo offline. Ideal para equipes ágeis.",
+            previewType: "image",
+            previewSrc: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=450&fit=crop",
+            github: "https://github.com/seuusuario/taskflow-manager",
+            live: "https://taskflow.app"
+        },
+        {
+            name: "Analytics Pro",
+            description: "Dashboard analítico com gráficos interativos, exportação de relatórios e insights em tempo real.",
+            previewType: "image",
+            previewSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop",
+            github: "https://github.com/seuusuario/analytics-pro",
+            live: "https://analytics-pro.demo"
+        }
+    ];
+
+    function renderProjects() {
+        const container = document.getElementById('projectsContainer');
+        if(!container) return;
+        container.innerHTML = '';
+        projectsData.forEach(proj => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            
+            let previewHtml = '';
+            if(proj.previewType === 'image' && proj.previewSrc) {
+                previewHtml = `<img src="${proj.previewSrc}" alt="${proj.name} preview" loading="lazy">`;
+            } else if(proj.previewType === 'iframe' && proj.previewUrl) {
+                previewHtml = `<iframe src="${proj.previewUrl}" title="Preview do projeto" loading="lazy" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>`;
+            } else {
+                previewHtml = `<div class="preview-placeholder"><i class="${proj.previewIcon || 'fas fa-code'}"></i><span>Preview do Projeto</span></div>`;
+            }
+            
+            card.innerHTML = `
+                <div class="project-preview">
+                    ${previewHtml}
+                </div>
+                <div class="project-info">
+                    <h3>${proj.name}</h3>
+                    <p>${proj.description}</p>
+                    <div class="project-buttons">
+                        <a href="${proj.github}" target="_blank" class="btn-small"><i class="fab fa-github"></i> Ver no GitHub</a>
+                        <a href="${proj.live}" target="_blank" class="btn-small btn-ghost"><i class="fas fa-external-link-alt"></i> Visualizar Projeto</a>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Menu Hamburguer Funcional
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Fechar menu ao clicar em qualquer link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Formulário funcional
+    const contactForm = document.getElementById('contactForm');
+    const feedback = document.getElementById('formFeedback');
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nome = document.getElementById('nome').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const mensagem = document.getElementById('mensagem').value.trim();
+
+        if(!nome || !email || !mensagem) {
+            feedback.innerText = '❌ Preencha todos os campos para enviar sua mensagem.';
+            feedback.style.color = '#f87171';
+            return;
+        }
+        if(!email.includes('@') || !email.includes('.')) {
+            feedback.innerText = '❌ Insira um e-mail válido.';
+            feedback.style.color = '#f87171';
+            return;
+        }
+        feedback.innerHTML = '✅ Mensagem enviada! Entrarei em contato em breve.';
+        feedback.style.color = '#86efac';
+        contactForm.reset();
+        setTimeout(() => {
+            feedback.innerHTML = '';
+        }, 4000);
+    });
+
+    // Animações suave ao scroll
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.skill-card, .project-card, .service-item, .contact-wrapper');
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            if(rect.top < windowHeight - 80) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            } else {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(25px)';
+            }
+        });
+    };
+
+    // Inicialização
+    window.addEventListener('load', () => {
+        renderProjects();
+        const fadeElements = document.querySelectorAll('.skill-card, .project-card, .service-item, .contact-wrapper');
+        fadeElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(25px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        animateOnScroll();
+        window.addEventListener('scroll', animateOnScroll);
+        document.querySelector('.hero .hero-content').style.opacity = '1';
+    });
+
+    // Smooth scroll para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href === "#" || href === "") return;
+            const target = document.querySelector(href);
+            if(target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Fecha menu mobile se estiver aberto
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    // Efeito navbar ao scroll
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        if(window.scrollY > 50) {
+            navbar.style.background = 'rgba(5, 9, 15, 0.98)';
+            navbar.style.backdropFilter = 'blur(16px)';
+        } else {
+            navbar.style.background = 'rgba(5, 9, 15, 0.92)';
+        }
+    });
+</script>
+</body>
+</html>
